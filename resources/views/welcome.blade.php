@@ -3,381 +3,229 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Digital Wallet Pass Designer</title>
+        <title>Let's Wallet - Digital Wallet Pass Management</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <style>
-            /* Same styles as before until header */
-            ::-webkit-scrollbar { display: none; }
-            html {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            }
-            body {
-                margin: 0;
-                background: #0f172a;
-                color: #fff;
-                overflow-x: hidden;
+           #google-pass-cards .card {
+                background: #f1f1f1; /* Soft light background */
+                border-radius: 12px; /* Smooth rounded corners */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
 
-            /* Fixed elements */
-            .fixed-elements {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 100;
-                pointer-events: none; /* Allows scrolling through the fixed elements */
+            #google-pass-cards .card:hover {
+                transform: translateY(-5px); /* Lift effect */
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
             }
 
-            .header {
-                padding: 1.5rem;
-                background: rgba(15, 23, 42, 0.9);
-                backdrop-filter: blur(10px);
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                pointer-events: auto; /* Re-enable pointer events for header */
+            #google-pass-cards .card-img-top {
+                border-radius: 12px 12px 0 0; /* Rounded top corners */
             }
 
-            .logo {
-                font-size: 1.5rem;
-                font-weight: bold;
-                background: linear-gradient(135deg, #60a5fa, #a855f7);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-
-            .cta-button {
-                background: linear-gradient(135deg, #60a5fa, #a855f7);
-                color: white;
-                padding: 0.75rem 1.5rem;
-                border-radius: 50px;
-                text-decoration: none;
-                font-weight: 500;
-            }
-
-            .showcase-title {
-                text-align: center;
-                padding: 2rem 1rem;
-                margin: 0;
-                font-size: 2.5rem;
-                background: linear-gradient(135deg, #60a5fa, #a855f7);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                pointer-events: auto; /* Re-enable pointer events for title */
-            }
-
-            /* Card container adjustments */
-            .card-container {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                perspective: 1000px;
-                padding-top: 3rem; /* Add some space below the title */
-            }
-
-            .card {
-                position: absolute;
-                opacity: 0;
-                transform: translateY(100px) scale(0.8);
-                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-                pointer-events: none;
-            }
-
-            .card.active {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                pointer-events: auto;
-            }
-
-            .card.previous {
-                opacity: 0;
-                transform: translateY(-100px) scale(0.8);
-            }
-
-            /* Pass card styles */
-            .wallet-pass {
-                width: 300px;
-                height: 180px;
-                border-radius: 15px;
+            #google-pass-cards .card-body {
                 padding: 20px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
             }
 
-            .pass-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
+            #google-pass-cards .card-title {
+                font-size: 1.2rem;
+                color: #333; /* Dark text for titles */
             }
 
-            .pass-logo {
-                width: 50px;
-                height: 50px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 10px;
+            #google-pass-cards .card-text {
+                font-size: 0.9rem;
+                color: #555; /* Slightly muted text for descriptions */
             }
 
-            .pass-type {
-                font-size: 0.875rem;
-                opacity: 0.8;
+            #google-pass-cards .badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+                font-weight: 600;
             }
 
-            .pass-details {
-                margin-top: 1rem;
+            #google-pass-cards .btn-sm {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+                border-radius: 20px;
             }
 
-            .pass-number {
-                font-size: 1.25rem;
-                font-weight: bold;
-                letter-spacing: 2px;
+            #google-pass-cards .card-footer {
+                background: #f9f9f9;
+                border-top: 1px solid #ddd;
             }
 
-            .pass-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-            }
-
-            .pass-barcode {
-                width: 50px;
-                height: 50px;
-                background: rgba(255, 255, 255, 0.9);
-                border-radius: 5px;
-            }
-
-            .spacer {
-                height: 400vh;
-            }
-
-            .scroll-hint {
-                position: fixed;
-                bottom: 2rem;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 0.875rem;
-                color: #94a3b8;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-                opacity: 0.7;
-                pointer-events: none;
-            }
-
-            .scroll-icon {
-                font-size: 1.5rem;
-                animation: bounce 2s infinite;
-            }
-
-            @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-                40% { transform: translateY(-10px); }
-                60% { transform: translateY(-5px); }
-            }
-            .circle {
-                width: 150px;  /* Set the size of the circle */
-                height: 150px; /* Make it a perfect circle */
-                border-radius: 50%; /* This makes it round */
-                overflow: hidden; /* Ensures the image is clipped to fit the circle */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f0f0f0; /* Optional background color */
-            }
-
-            .circle-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Ensures the image covers the circle without distorting */
-            }
 
         </style>
     </head>
-    <body>
+    <body class="bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="#"><i class="fas fa-wallet me-2"></i>Let's Wallet</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#pricing">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pt-5 mt-5 text-center bg-light" id="hero-container">
+            <div class="container py-5">
+                <h1 class="display-4 fw-bold">Your Digital Wallet,<br>Reimagined</h1>
+                <p class="lead text-muted mt-3 mb-4">Effortlessly store, manage, and access all your digital passes in one convenient location. <br>From event tickets to loyalty cards, Let's Wallet simplifies digital pass management.</p>
+                <a href="#" class="btn btn-primary btn-lg">Start Free Trial</a>
+            </div>
+        </section>
+
+        <section id="google-pass-cards" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-4">Your Digital Passes</h2>
+                <div class="row g-4">
+                    <!-- Card 1: Event Ticket -->
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm rounded-3 bg-light h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge rounded-pill bg-primary text-light me-3">Event</div>
+                                    <h5 class="card-title fw-bold">Concert in NYC</h5>
+                                </div>
+                                <p class="card-text text-muted">Venue: Madison Square Garden</p>
+                                <p class="card-text text-muted">Date: March 5, 2025</p>
+                                <p class="card-text text-muted">Seat: A15, Row 2</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-outline-primary btn-sm">View Ticket</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: Loyalty Card -->
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm rounded-3 bg-light h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge rounded-pill bg-success text-light me-3">Loyalty</div>
+                                    <h5 class="card-title fw-bold">Store XYZ - Gold Member</h5>
+                                </div>
+                                <p class="card-text text-muted">Points: 1520</p>
+                                <p class="card-text text-muted">Expires: December 31, 2025</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-outline-success btn-sm">View Card</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Flight Pass -->
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm rounded-3 bg-light h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge rounded-pill bg-warning text-dark me-3">Flight</div>
+                                    <h5 class="card-title fw-bold">Flight to Paris</h5>
+                                </div>
+                                <p class="card-text text-muted">Flight No: AF 1234</p>
+                                <p class="card-text text-muted">Departure: March 12, 2025</p>
+                                <p class="card-text text-muted">Gate: 45</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-outline-warning btn-sm">View Pass</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4: Membership Card -->
+                    <div class="col-md-3">
+                        <div class="card border-0 shadow-sm rounded-3 bg-light h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="badge rounded-pill bg-info text-dark me-3">Membership</div>
+                                    <h5 class="card-title fw-bold">Premium Member</h5>
+                                </div>
+                                <p class="card-text text-muted">Member Since: January 2024</p>
+                                <p class="card-text text-muted">Expiration: January 2025</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-outline-info btn-sm">View Membership</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="features" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-4">Why Choose Let's Wallet</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-shield-alt text-primary fs-1 mb-3"></i>
+                                <h5 class="card-title fw-bold">Secure Storage</h5>
+                                <p class="card-text text-muted">Your passes are encrypted and securely stored with enterprise-grade security protocols.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-sync text-primary fs-1 mb-3"></i>
+                                <h5 class="card-title fw-bold">Auto Sync</h5>
+                                <p class="card-text text-muted">Automatically sync your passes across all your devices in real-time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-magic text-primary fs-1 mb-3"></i>
+                                <h5 class="card-title fw-bold">Ease of Use</h5>
+                                <p class="card-text text-muted">AI-powered categorization keeps your passes organized automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-dark text-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <h4 class="fw-bold">Let's Wallet</h4>
+                        <address>1234 Innovation Drive,<br>Tech City, TC 56789</address>
+                        <small>© 2024 Let's Wallet. All rights reserved.</small>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <h5 class="fw-bold">Our Other Products</h5>
+                        <ul class="list-unstyled">
+                            <li>Let's Calendar</li>
+                            <li>Let's TimeIt</li>
+                        </ul>
+                        <h5 class="fw-bold mt-3">Connect with Us</h5>
+                        <div class="d-flex justify-content-end gap-3">
+                            <a href="#" class="text-light"><i class="fab fa-facebook fa-lg"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-twitter fa-lg"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <!-- Fixed elements container -->
-        <div class="fixed-elements">
-            <header class="header">
-                <div class="logo">PassDesigner</div>
-                <a href="#" class="cta-button">Start Designing</a>
-            </header>
-            <h1 class="showcase-title">Discover Our Pass Designs</h1>
-        </div>
-
-        <!-- Cards container -->
-        <div class="card-container">
-            <!-- Membership Pass -->
-            <div class="card">
-                <div class="wallet-pass" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
-                    <div class="pass-header">
-                        <div class="pass-logo"></div>
-                        <span class="pass-type">Sunburn Event</span>
-                    </div>
-                    <div class="pass-details">
-                        <div class="pass-number">GOLD-2024</div>
-                        <div>Premium Member</div>
-                    </div>
-                    <div class="pass-footer">
-                        <div>Valid thru 12/24</div>
-                        <div class="pass-barcode"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event Pass -->
-            <div class="card">
-                <div class="wallet-pass" style="background: linear-gradient(135deg, #ef4444, #f97316);">
-                    <div class="pass-header">
-                        <div class="pass-logo"></div>
-                        <span class="pass-type">EVENT</span>
-                    </div>
-                    <div class="pass-details">
-                        <div class="pass-number">VIP ACCESS</div>
-                        <div>Tech Conference 2024</div>
-                    </div>
-                    <div class="pass-footer">
-                        <div>Seat A-123</div>
-                        <div class="pass-barcode"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Loyalty Card -->
-            <div class="card">
-                <div class="wallet-pass" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
-                    <div class="pass-header">
-                        <div class="pass-logo"></div>
-                        <span class="pass-type">LOYALTY</span>
-                    </div>
-                    <div class="pass-details">
-                        <div class="pass-number">POINTS: 2,450</div>
-                        <div>Silver Status</div>
-                    </div>
-                    <div class="pass-footer">
-                        <div>Member since 2023</div>
-                        <div class="pass-barcode"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Boarding Pass -->
-            <div class="card">
-                <div class="wallet-pass" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
-                    <div class="pass-header">
-                        <div class="pass-logo"></div>
-                        <span class="pass-type">BOARDING</span>
-                    </div>
-                    <div class="pass-details">
-                        <div class="pass-number">FLIGHT AB123</div>
-                        <div>Gate B12 • Seat 14A</div>
-                    </div>
-                    <div class="pass-footer">
-                        <div>SFO → NYC</div>
-                        <div class="pass-barcode"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-hint">
-            <i class="fas fa-mouse scroll-icon"></i>
-            Scroll to explore passes
-        </div>
-
-        <div class="spacer"></div>
-
-        <script>
-            // Same JavaScript as before
-            const cards = document.querySelectorAll(".card");
-            const cardCount = cards.length;
-            let isScrolling = false;
-            let currentCardIndex = 0;
-
-            window.addEventListener('wheel', (e) => {
-                if (isScrolling) return;
-                
-                const direction = e.deltaY > 0 ? 1 : -1;
-                const newIndex = Math.max(0, Math.min(currentCardIndex + direction, cardCount - 1));
-                
-                if (newIndex !== currentCardIndex) {
-                    isScrolling = true;
-                    currentCardIndex = newIndex;
-                    
-                    window.scrollTo({
-                        top: currentCardIndex * window.innerHeight,
-                        behavior: 'smooth'
-                    });
-
-                    updateCards(currentCardIndex);
-                    
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, 700);
-                }
-            });
-
-            let touchStartY = 0;
-            let touchEndY = 0;
-
-            window.addEventListener('touchstart', (e) => {
-                touchStartY = e.touches[0].clientY;
-            });
-
-            window.addEventListener('touchmove', (e) => {
-                if (isScrolling) {
-                    e.preventDefault();
-                }
-            }, { passive: false });
-
-            window.addEventListener('touchend', (e) => {
-                if (isScrolling) return;
-
-                touchEndY = e.changedTouches[0].clientY;
-                const direction = touchStartY > touchEndY ? 1 : -1;
-                const newIndex = Math.max(0, Math.min(currentCardIndex + direction, cardCount - 1));
-
-                if (Math.abs(touchStartY - touchEndY) > 50 && newIndex !== currentCardIndex) {
-                    isScrolling = true;
-                    currentCardIndex = newIndex;
-
-                    window.scrollTo({
-                        top: currentCardIndex * window.innerHeight,
-                        behavior: 'smooth'
-                    });
-
-                    updateCards(currentCardIndex);
-
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, 700);
-                }
-            });
-
-            function updateCards(activeIndex) {
-                cards.forEach((card, index) => {
-                    if (index === activeIndex) {
-                        card.classList.remove('previous');
-                        card.classList.add('active');
-                    } else if (index < activeIndex) {
-                        card.classList.add('previous');
-                        card.classList.remove('active');
-                    } else {
-                        card.classList.remove('previous', 'active');
-                    }
-                });
-            }
-
-            cards[0].classList.add('active');
-        </script>
     </body>
 </html>
