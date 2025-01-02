@@ -20,7 +20,7 @@
                         <a class="nav-link" href="#features">Dashbord</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link" href="#pricing">Event Pass</a>
+                        <a class="nav-link" href="{{ route('event-pass') }}">Event Pass</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link" href="#about">Boarding Pass</a>
