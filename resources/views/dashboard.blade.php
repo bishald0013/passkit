@@ -1,17 +1,18 @@
 @extends('layout.navigation')
 
 <div class="container mt-5 pt-5">
-    <!-- Organization Details Section -->
-    <div class="row text-center mb-5">
+     <!-- Row 4: Organization Details -->
+     <div class="row text-center mb-5">
         <div class="col-md-12">
-            <div class="card shadow rounded-3 mb-4 border-0">
+            <div class="card shadow rounded-3 border-0">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-center">
-                        <div class="rounded-circle bg-primary p-3 me-3" style="width: 60px; height: 60px;">
+                        <div class="rounded-circle bg-primary p-3 me-3" style="width: 60px; height: 60px; overflow: hidden;">
                             <img src="{{ asset('images/sunburn.jpeg') }}" alt="Logo" class="img-fluid rounded-circle" style="object-fit: cover; width: 100%; height: 100%;">
                         </div>
+                        
                         <div>
-                            <h4 class="card-title fw-bold">Let's Wallet</h4>
+                            <h4 class="card-title fw-bold text-start mt-4"> Welcome Bishal Deb</h4>
                             <p class="text-muted">Your trusted platform for managing digital passes and assets.</p>
                         </div>
                         <div class="ms-auto">
@@ -24,47 +25,20 @@
             </div>
         </div>
     </div>
-
-    <!-- Stats Overview Section -->
+    <!-- Row 1: Chart and Total Downloads -->
     <div class="row mb-5">
-        <!-- Total Event Passes -->
-        <div class="col-md-3">
+        <!-- Chart Section -->
+        <div class="col-md-6">
             <div class="card shadow rounded-3 border-0">
-                <div class="card-body text-center">
-                    <h5 class="fw-bold">Total Event Passes</h5>
-                    <p class="text-muted">120</p>
-                    <div class="progress" style="height: 6px;">
-                        <div class="progress-bar" style="width: 60%; background-color: #4caf50;"></div>
-                    </div>
+                <div class="card-body">
+                    <h4 class="fw-bold">Pass Stats Chart</h4>
+                    <canvas id="passStatsChart"></canvas>
                 </div>
             </div>
         </div>
-        <!-- Total Generic Passes -->
-        <div class="col-md-3">
-            <div class="card shadow rounded-3 border-0">
-                <div class="card-body text-center">
-                    <h5 class="fw-bold">Total Generic Passes</h5>
-                    <p class="text-muted">150</p>
-                    <div class="progress" style="height: 6px;">
-                        <div class="progress-bar" style="width: 75%; background-color: #ff9800;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Active Passes -->
-        <div class="col-md-3">
-            <div class="card shadow rounded-3 border-0">
-                <div class="card-body text-center">
-                    <h5 class="fw-bold">Active Passes</h5>
-                    <p class="text-muted">100</p>
-                    <div class="progress" style="height: 6px;">
-                        <div class="progress-bar" style="width: 50%; background-color: #2196f3;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Total Downloads -->
-        <div class="col-md-3">
+
+        <!-- Total Downloads Section -->
+        <div class="col-md-6">
             <div class="card shadow rounded-3 border-0">
                 <div class="card-body text-center">
                     <h5 class="fw-bold">Total Downloads</h5>
@@ -77,7 +51,7 @@
         </div>
     </div>
 
-    <!-- API Usage Section -->
+    <!-- Row 2: API Usage Section -->
     <div class="row mb-5">
         <div class="col-md-12">
             <div class="card shadow rounded-3 border-0">
@@ -124,12 +98,41 @@
         </div>
     </div>
 
-    <!-- Chart Section (Line Chart) -->
-    <div class="row">
+    <!-- Row 3: New Projects or Features -->
+    <div class="row mb-5">
         <div class="col-md-12">
             <div class="card shadow rounded-3 border-0">
                 <div class="card-body">
-                    <canvas id="passStatsChart"></canvas>
+                    <h4 class="fw-bold">New Features/Projects</h4>
+                    <div class="d-flex flex-wrap">
+                        <!-- Feature 1 -->
+                        <div class="card shadow-sm border-0 m-2" style="width: 18rem;">
+                            <img src="{{ asset('images/feature1.jpg') }}" class="card-img-top" alt="Feature 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Feature 1</h5>
+                                <p class="card-text">Description of feature 1.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="card shadow-sm border-0 m-2" style="width: 18rem;">
+                            <img src="{{ asset('images/feature2.jpg') }}" class="card-img-top" alt="Feature 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Feature 2</h5>
+                                <p class="card-text">Description of feature 2.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="card shadow-sm border-0 m-2" style="width: 18rem;">
+                            <img src="{{ asset('images/feature3.jpg') }}" class="card-img-top" alt="Feature 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Feature 3</h5>
+                                <p class="card-text">Description of feature 3.</p>
+                                <a href="#" class="btn btn-primary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,15 +143,15 @@
 <script>
     const ctx = document.getElementById('passStatsChart').getContext('2d');
     const passStatsChart = new Chart(ctx, {
-        type: 'line',  // Changed to line chart
+        type: 'line',  // Line chart type
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],  // Example months for the x-axis
+            labels: ['January', 'February', 'March', 'April', 'May'],  // Example months
             datasets: [{
                 label: 'Pass Stats',
-                data: [100, 120, 110, 130, 150],  // Example data for the y-axis
+                data: [100, 120, 110, 130, 150],  // Example data
                 borderColor: 'rgba(75, 192, 192, 1)',  // Line color
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Fill color under the line
-                fill: true,  // Fill the area under the line
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Fill under the line
+                fill: true,  // Fill under the line
                 borderWidth: 2
             }]
         },
