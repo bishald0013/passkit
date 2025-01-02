@@ -87,7 +87,7 @@
             <div class="container py-5">
                 <h1 class="display-4 fw-bold">Your Digital Wallet,<br>Reimagined</h1>
                 <p class="lead text-muted mt-3 mb-4">Effortlessly store, manage, and access all your digital passes in one convenient location. <br>From event tickets to loyalty cards, Let's Wallet simplifies digital pass management.</p>
-                <a href="#" class="btn btn-primary btn-lg">Start Free Trial</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg">Start Free Trial</a>
             </div>
         </section>
 
