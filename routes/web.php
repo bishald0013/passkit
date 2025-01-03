@@ -14,6 +14,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// route connects to the event-ticket component
-Route::get('/event-pass', [EventController::class, 'index'])->name('event-pass');
-
+Route::prefix('passes')->name('passes.')->group(function () {
+    Route::get('/event', [EventController::class, 'index'])->name('event');
+});

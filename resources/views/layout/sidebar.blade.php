@@ -5,7 +5,8 @@
     </div>
 
     <div class="nav flex-column">
-        <a href="#" class="nav-link active">
+        <a href="{{ route('dashboard') }}" 
+            class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
             <i class="fas fa-home"></i>
             Dashboard
         </a>
@@ -45,15 +46,19 @@
 
         <!-- Pass Menu -->
         <div class="menu-item">
-            <a href="#" class="nav-link" data-toggle="submenu" data-target="pass-menu">
+            <a href="#" 
+            class="nav-link {{ request()->routeIs('passes.*') ? 'active' : '' }}"
+            data-toggle="submenu" 
+            data-target="pass-menu">
                 <div>
                     <i class="fas fa-ticket"></i>
                     Pass
                 </div>
                 <i class="fas fa-chevron-down menu-toggle"></i>
             </a>
-            <div class="submenu" id="pass-menu">
-                <a href="{{ route('event-pass') }}" class="nav-link">Event Pass</a>
+            <div class="submenu {{ request()->routeIs('passes.*') ? 'show' : '' }}" id="pass-menu">
+                <a href="{{ route('passes.event') }}" 
+                class="nav-link {{ request()->routeIs('passes.event') ? 'sub-active' : '' }}">Event Pass</a>
                 <a href="#" class="nav-link">Generic Pass</a>
                 <a href="#" class="nav-link">Travel Pass</a>
                 <a href="#" class="nav-link">Digital Pass</a>

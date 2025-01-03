@@ -7,6 +7,7 @@
     <title>@yield('title', 'Dashboard')</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@simonwep/pickr@1.8.0/dist/themes/classic.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f5ff;
@@ -14,7 +15,9 @@
             margin: 0;
             padding: 0;
         }
-
+        .sub-active {
+            color: #893894dc;
+        }
         .sidebar {
             width: 280px;
             height: 100vh;
@@ -240,33 +243,57 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuToggles = document.querySelectorAll('[data-toggle="submenu"]');
-            const sidebar = document.querySelector('.sidebar');
-            const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+        const menuToggles = document.querySelectorAll('[data-toggle="submenu"]');
+        const sidebar = document.querySelector('.sidebar');
+        const toggleSidebarBtn = document.getElementById('toggle-sidebar');
 
-            menuToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('data-target');
-                    const targetSubmenu = document.getElementById(targetId);
-                    const chevron = this.querySelector('.menu-toggle');
+        // Handle submenu toggles
+        menuToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                const targetSubmenu = document.getElementById(targetId);
+                const chevron = this.querySelector('.menu-toggle');
 
-                    document.querySelectorAll('.submenu').forEach(submenu => {
-                        if (submenu.id !== targetId && submenu.classList.contains('show')) {
+                // Store the state in localStorage
+                const isOpen = targetSubmenu.classList.contains('show');
+                localStorage.setItem(`submenu_${targetId}`, !isOpen);
+
+                // Close other submenus unless they should stay open (based on active state)
+                document.querySelectorAll('.submenu').forEach(submenu => {
+                    if (submenu.id !== targetId && submenu.classList.contains('show')) {
+                        const shouldStayOpen = submenu.querySelector('.nav-link.active');
+                        if (!shouldStayOpen) {
                             submenu.classList.remove('show');
                             submenu.previousElementSibling.querySelector('.menu-toggle').classList.remove('rotate');
                         }
-                    });
-
-                    targetSubmenu.classList.toggle('show');
-                    chevron.classList.toggle('rotate');
+                    }
                 });
-            });
 
-            toggleSidebarBtn.addEventListener('click', function() {
-                sidebar.classList.toggle('hidden');
+                targetSubmenu.classList.toggle('show');
+                chevron.classList.toggle('rotate');
             });
         });
+
+        // Restore submenu states from localStorage on page load
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            const storedState = localStorage.getItem(`submenu_${submenu.id}`);
+            const hasActiveChild = submenu.querySelector('.nav-link.active');
+            
+            if (storedState === 'true' || hasActiveChild) {
+                submenu.classList.add('show');
+                const chevron = submenu.previousElementSibling.querySelector('.menu-toggle');
+                if (chevron) {
+                    chevron.classList.add('rotate');
+                }
+            }
+        });
+
+        // Mobile sidebar toggle
+        toggleSidebarBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('hidden');
+        });
+    });
     </script>
     @yield('additional_scripts')
 </body>
