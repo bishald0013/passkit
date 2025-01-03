@@ -34,7 +34,7 @@
     }
 
     .preview-card {
-        background: linear-gradient(135deg, #7749F8, #6f42c1);
+        background: #7749F8; /* Default color */
         border-radius: 16px;
         padding: 24px;
         height: 100%;
@@ -43,6 +43,7 @@
         position: relative;
         overflow: hidden;
     }
+
 
     .preview-card::before {
         content: '';
@@ -357,19 +358,17 @@
         const colorPicker = document.getElementById('colorPicker');
         const selectedColor = colorPicker.value;
 
-        // Check if the color is valid
-        if (selectedColor) {
-            // Change the preview card's background color
-            document.getElementById('previewCard').style.backgroundColor = selectedColor;
+        // Change the preview card's background color to the selected color
+        document.getElementById('previewCard').style.background = selectedColor;
 
-            // Close the modal after saving the color
-            const modal = bootstrap.Modal.getInstance(document.getElementById('colorPickerModal'));
-            modal.hide();
+        // Close the modal after saving the color
+        const modal = bootstrap.Modal.getInstance(document.getElementById('colorPickerModal'));
+        modal.hide();
 
-            // Set the hex value to the input field
-            document.getElementById('hexCode').value = selectedColor;
-        }
+        // Set the hex value to the input field
+        document.getElementById('hexCode').value = selectedColor;
     });
+
 
     // Call this function on input change
     document.querySelectorAll('#imageUpload, #organizationName, #eventVenue, #eventName, #eventDate, #eventTime, #gate, #section, #seatRow, #barcode, #heroImageUpload').forEach((element) => {
