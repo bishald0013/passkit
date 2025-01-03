@@ -111,7 +111,7 @@
 
     <div class="event-pass-container">
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="card shadow-sm border-light">
                     <div class="card-body">
                         <h5 class="card-title mb-4 text-center">Pass Details</h5>
@@ -217,20 +217,64 @@
             </div>
 
             <!-- Right Column - Preview Card -->
-            <div class="col-md-5">
-                <div class="preview-card">
-                    <span class="event-badge" id="previewPassType">VIP PASS</span>
-                    <h3 id="previewEventName">Tech Conference 2024</h3>
-                    <div class="preview-details">
-                        <p class="mb-2"><i class="far fa-calendar me-2"></i><span id="previewDateTime">January 15, 2024 - 10:00 AM</span></p>
-                        <p class="mb-2"><i class="fas fa-map-marker-alt me-2"></i><span id="previewLocation">Convention Center</span></p>
-                        <p class="mb-0"><i class="far fa-user me-2"></i><span id="previewAttendeeName">John Doe</span></p>
+            <div class="col-md-4">
+                <div class="preview-card" id="previewCard">
+                    <!-- First Line: Logo and Organizer Name -->
+                    <div class="d-flex align-items-center mb-3">
+                        <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
+                        <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
                     </div>
-                    <div class="qr-placeholder">
-                        <i class="fas fa-qrcode fa-2x" style="color: rgba(255, 255, 255, 0.5)"></i>
+                    
+                    <!-- Horizontal Line -->
+                    <hr>
+            
+                    <!-- Second Line: Venue -->
+                    <div class="mb-3">
+                        <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
+                    </div>
+            
+                    <!-- Third Line: Event Name -->
+                    <div class="mb-3">
+                        <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
+                    </div>
+            
+                    <!-- Fourth Line: Date and Time -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
+                        </div>
+                    </div>
+            
+                    <!-- Fifth Line: Gate, Section, Row -->
+                    <div class="row mb-3" id="seatDetailsRow" style="display: none;">
+                        <div class="col-md-4">
+                            <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
+                        </div>
+                    </div>
+            
+                    <!-- Barcode (if provided) -->
+                    <div class="mb-3" id="barcodePreview" style="display: none;">
+                        <h6><strong>Barcode:</strong></h6>
+                        <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
+                    </div>
+            
+                    <!-- Hero Image -->
+                    <div class="mb-3">
+                        <h6><strong>Hero Image:</strong></h6>
+                        <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -246,59 +290,75 @@
         const modal = new bootstrap.Modal(document.getElementById('colorPickerModal'));
         modal.show();
     });
-
-    // Optional: Bind the selected color to the hex code input field
-    document.getElementById('saveColorButton').addEventListener('click', function() {
-        const color = document.getElementById('colorPicker').value;
-        document.getElementById('colorPickerInput').value = color;
-        document.getElementById('hexCode').value = color;
-        const modal = bootstrap.Modal.getInstance(document.getElementById('colorPickerModal'));
-        modal.hide();
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all input elements
-        const eventName = document.getElementById('eventName');
-        const eventDateTime = document.getElementById('eventDateTime');
-        const eventLocation = document.getElementById('eventLocation');
-        const attendeeName = document.getElementById('attendeeName');
-        const passType = document.getElementById('passType');
-
-        // Function to update preview
-        function updatePreview() {
-            // Update event name
-            document.getElementById('previewEventName').textContent = 
-                eventName.value || 'Tech Conference 2024';
-
-            // Update date and time
-            if (eventDateTime.value) {
-                const date = new Date(eventDateTime.value);
-                document.getElementById('previewDateTime').textContent = 
-                    date.toLocaleString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric',
-                        hour: '2-digit', 
-                        minute: '2-digit'
-                    });
-            }
-
-            // Update location
-            document.getElementById('previewLocation').textContent = 
-                eventLocation.value || 'Convention Center';
-
-            // Update attendee name
-            document.getElementById('previewAttendeeName').textContent = 
-                attendeeName.value || 'John Doe';
-
-            // Update pass type
-            document.getElementById('previewPassType').textContent = 
-                `${passType.value} PASS`;
+    function updatePreviewCard() {
+        // Logo and Organizer
+        const logoInput = document.getElementById('imageUpload');
+        const logoPreview = document.getElementById('previewLogo');
+        if (logoInput.files.length > 0) {
+            const logoURL = URL.createObjectURL(logoInput.files[0]);
+            logoPreview.src = logoURL;
         }
 
-        // Add event listeners to all inputs
-        [eventName, eventDateTime, eventLocation, attendeeName, passType].forEach(input => {
-            input.addEventListener('input', updatePreview);
-        });
+        const organizerName = document.getElementById('organizationName').value;
+        document.getElementById('previewOrganizerName').innerText = organizerName;
+
+        // Venue
+        const venue = document.getElementById('eventVenue').value;
+        document.getElementById('previewVenue').innerText = venue;
+
+        // Event Name
+        const eventName = document.getElementById('eventName').value;
+        document.getElementById('previewEventName').innerText = eventName;
+
+        // Date & Time
+        const eventDate = document.getElementById('eventDate').value;
+        document.getElementById('previewDate').innerText = eventDate;
+
+        const eventTime = document.getElementById('eventTime').value;
+        document.getElementById('previewTime').innerText = eventTime;
+
+        // Gate, Section, Seat/Row
+        const gate = document.getElementById('gate').value;
+        const section = document.getElementById('section').value;
+        const seatRow = document.getElementById('seatRow').value;
+
+        if (gate || section || seatRow) {
+            document.getElementById('seatDetailsRow').style.display = 'flex';
+            document.getElementById('previewGate').innerText = gate;
+            document.getElementById('previewSection').innerText = section;
+            document.getElementById('previewSeatRow').innerText = seatRow;
+        }
+
+        // Barcode
+        const barcodeInput = document.getElementById('barcode');
+        const barcodePreview = document.getElementById('barcodePreview');
+        if (barcodeInput.files.length > 0) {
+            const barcodeURL = URL.createObjectURL(barcodeInput.files[0]);
+            barcodePreview.style.display = 'block';
+            document.getElementById('barcodeImage').src = barcodeURL;
+        } else {
+            barcodePreview.style.display = 'none';
+        }
+
+        // Hero Image
+        const heroImageInput = document.getElementById('heroImageUpload');
+        const heroImagePreview = document.getElementById('heroImagePreview');
+        if (heroImageInput.files.length > 0) {
+            const heroImageURL = URL.createObjectURL(heroImageInput.files[0]);
+            heroImagePreview.src = heroImageURL;
+        }
+    }
+
+    // Color Change for Card
+    document.getElementById('saveColorButton').addEventListener('click', function() {
+        const colorPicker = document.getElementById('colorPicker');
+        const selectedColor = colorPicker.value;
+        document.getElementById('previewCard').style.backgroundColor = selectedColor;
+    });
+
+    // Call this function on input change
+    document.querySelectorAll('#imageUpload, #organizationName, #eventVenue, #eventName, #eventDate, #eventTime, #gate, #section, #seatRow, #barcode, #heroImageUpload').forEach((element) => {
+        element.addEventListener('input', updatePreviewCard);
     });
 </script>
 @endsection
