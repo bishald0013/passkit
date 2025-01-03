@@ -171,20 +171,17 @@
                 </h2>
     
                 <!-- Search Input -->
-                {{-- <div class="d-flex align-items-center" style="max-width: 500px; width: 100%;">
+                <div class="d-flex align-items-center" style="max-width: 500px; width: 100%;">
                     <div class="input-group flex-nowrap">
                         <input type="text" class="form-control rounded-pill shadow-sm border-light" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" style="height: 45px;">
                         <span class="input-group-text bg-light border-light shadow-sm rounded-pill" id="search-addon" style="cursor: pointer; padding: 0 20px; height: 45px;">
                             <i class="fas fa-search" style="color: #7749F8;"></i>
                         </span>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
-    
-    
-    
 
     <div class="accordion" id="accordionExample">
         <div class="accordion-iteam">
@@ -372,8 +369,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="accordion-item mt-3">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed rounded-3 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -381,7 +376,7 @@
                     
                     <!-- Left side content (Event Name, Event Location) -->
                     <div class="d-flex">
-                      <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name: 5G New Generation</span>
+                      <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name:Schedule Reminder Test</span>
                       <span class="me-4" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Location">Event Location: Royal Global University</span>
                     </div>
                     
@@ -395,7 +390,7 @@
                     
                   </div>
                 </button>
-              </h2>
+            </h2>
               
               
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -567,9 +562,11 @@
                                 <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
                                     <i class="fas fa-plus me-2"></i> Update Pass
                                 </button>
-                                <button class="btn btn-outline-primary rounded-pill px-4 py-2 ml-3" style="font-weight: 600;">
-                                    <i class="fas fa-eye me-2"></i> Preview Pass
-                                </button>
+                                <a href="https://pay.google.com/gp/v/save/eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJsYy13YWxsZXRAbGV0cy1jYWxlbmRhci1tYW5vbWF5LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiZ29vZ2xlIiwib3JpZ2lucyI6WyJ3d3cuZXhhbXBsZS5jb20iXSwidHlwIjoic2F2ZXRvYW5kcm9pZHBheSIsInBheWxvYWQiOnsiZXZlbnRUaWNrZXRDbGFzc2VzIjpbeyJhbGxvd011bHRpcGxlVXNlcnNQZXJPYmplY3QiOm51bGwsImNvbmZpcm1hdGlvbkNvZGVMYWJlbCI6bnVsbCwiY291bnRyeUNvZGUiOm51bGwsImVuYWJsZVNtYXJ0VGFwIjpudWxsLCJldmVudElkIjpudWxsLCJnYXRlTGFiZWwiOm51bGwsImhleEJhY2tncm91bmRDb2xvciI6IiM1QkJDRkYiLCJpZCI6IjMzODgwMDAwMDAwMjIzMzIzODguVVkyVzlBTzFuZU1CTXNRZ1BiYUsiLCJpc3N1ZXJOYW1lIjoiTGV0J3MgQ2FsZW5kYXIiLCJraW5kIjpudWxsLCJtdWx0aXBsZURldmljZXNBbmRIb2xkZXJzQWxsb3dlZFN0YXR1cyI6bnVsbCwibm90aWZ5UHJlZmVyZW5jZSI6bnVsbCwicmVkZW1wdGlvbklzc3VlcnMiOm51bGwsInJldmlld1N0YXR1cyI6IlVOREVSX1JFVklFVyIsInJvd0xhYmVsIjpudWxsLCJzZWF0TGFiZWwiOm51bGwsInNlY3Rpb25MYWJlbCI6bnVsbCwidmVyc2lvbiI6bnVsbCwidmlld1VubG9ja1JlcXVpcmVtZW50IjpudWxsLCJldmVudE5hbWUiOnsia2luZCI6bnVsbCwiZGVmYXVsdFZhbHVlIjp7ImtpbmQiOm51bGwsImxhbmd1YWdlIjoiZW4tVVMiLCJ2YWx1ZSI6IlNjaGVkdWxlIFJlbWluZGVyIFRlc3QifX0sImRhdGVUaW1lIjp7ImRvb3JzT3BlbiI6bnVsbCwiZG9vcnNPcGVuTGFiZWwiOm51bGwsImVuZCI6bnVsbCwia2luZCI6bnVsbCwic3RhcnQiOiIyMDI0LTEyLTMxVDEyOjAwOjAwKzAwOjAwIn0sImxvZ28iOnsia2luZCI6bnVsbCwic291cmNlVXJpIjp7ImRlc2NyaXB0aW9uIjpudWxsLCJ1cmkiOiJodHRwczovL3BhbmVsLmxldHNjYWxlbmRhci5jb20vc3RvcmFnZS9pbWFnZXMvaHp1VDFJb0c3RGRiS3pGNTB4U0NUcjE0OGV2Q0Q1YTBPY1hYZm5IUi5wbmcifX0sImhlcm9JbWFnZSI6eyJraW5kIjpudWxsLCJzb3VyY2VVcmkiOnsiZGVzY3JpcHRpb24iOm51bGwsInVyaSI6Imh0dHBzOi8vcGFuZWwubGV0c2NhbGVuZGFyLmNvbS9zdG9yYWdlL2ltYWdlcy8yZ3ZMbnEyS0tNd01jaG1seHVnS3VuSEM0b29ZSjl5bVE3b2pMM3AyLmpwZyJ9fX1dLCJldmVudFRpY2tldE9iamVjdHMiOlt7ImNsYXNzSWQiOiIzMzg4MDAwMDAwMDIyMzMyMzg4LlVZMlc5QU8xbmVNQk1zUWdQYmFLIiwiZGlzYWJsZUV4cGlyYXRpb25Ob3RpZmljYXRpb24iOm51bGwsImhhc0xpbmtlZERldmljZSI6bnVsbCwiaGFzVXNlcnMiOm51bGwsImhleEJhY2tncm91bmRDb2xvciI6bnVsbCwiaWQiOiIzMzg4MDAwMDAwMDIyMzMyMzg4LmFxZXdoYndZRnF1NE9pTVduV2NDIiwia2luZCI6bnVsbCwibGlua2VkT2JqZWN0SWRzIjpudWxsLCJsaW5rZWRPZmZlcklkcyI6bnVsbCwibm90aWZ5UHJlZmVyZW5jZSI6bnVsbCwic21hcnRUYXBSZWRlbXB0aW9uVmFsdWUiOm51bGwsInN0YXRlIjoiQUNUSVZFIiwidGlja2V0SG9sZGVyTmFtZSI6bnVsbCwidGlja2V0TnVtYmVyIjpudWxsLCJ2ZXJzaW9uIjpudWxsfV19fQ.w8Wai3ZP-0UAphHEWkVPrCSkMniZixcuZsQegXE8pDlFxxAkg_eiSJ9wt1mVrvrojVUYqcpVnDA-U4JptpvZaB1SXRbSI_a4-MXLaRKJQRpfLjk-eulFSMNl-QIfPHB6yq3THMEEy9WrAcYG-e3tmHK5rdcRdw9kxaSO3gfGioKR0N_v8u837IRpp87uCF6iaay9XKceptII0R8pKrSSts4davXusCq5f03JVFlo_BNKm25GNiwLdyP0DVKI2q7lkKmiU_nsrBOgech_KZx7vDSlWF6wcekvw4QXAvm5nIpCq45wDJ5TA3SNP8Tv3fwe15-qKWO0QL_H1eqwLCxz8A" target="_blank">
+                                    <button class="btn btn-outline-primary rounded-pill px-4 py-2 ml-3" style="font-weight: 600;">
+                                        <i class="fas fa-eye me-2"></i> Preview Pass
+                                    </button>
+                                </a>                                
                             </div>
                         </div>
                     </div>
