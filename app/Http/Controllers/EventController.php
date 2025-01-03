@@ -8,6 +8,6 @@ class EventController extends Controller
 {
     public function index()
     {
-        return view('eventTicket');
+        return view('passes.event-pass');
     }
 }

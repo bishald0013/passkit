@@ -15,5 +15,5 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // route connects to the event-ticket component
-Route::get('/event-ticket', [EventController::class, 'index'])->name('event-pass');
+Route::get('/event-pass', [EventController::class, 'index'])->name('event-pass');
 
