@@ -1,4 +1,4 @@
-@extends('layout.navigation')
+@extends('layout.sidebar')
 
 <div class="container mt-5 pt-5">
      <!-- Row 4: Organization Details -->
@@ -27,7 +27,6 @@
     </div>
     <!-- Row 1: Chart and Total Downloads -->
     <div class="row mb-5">
-        <!-- Chart Section -->
         <div class="col-md-6">
             <div class="card shadow rounded-3 border-0">
                 <div class="card-body">
@@ -36,8 +35,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Total Downloads Section -->
         <div class="col-md-6">
             <div class="card shadow rounded-3 border-0">
                 <div class="card-body text-center">
