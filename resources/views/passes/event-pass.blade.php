@@ -95,8 +95,51 @@
         padding: 24px;
     }
 
-       .accordion-button:focus {
+    .accordion-button {
+        background-color: #f8f9fc;
+        color: #344054;
+        font-weight: 600;
+        padding: 14px 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-button:hover {
+        background-color: #f0f3f8;
+    }
+
+    .accordion-button:focus {
         box-shadow: none;
+        outline: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #7749F8;
+        color: white;
+    }
+
+    .accordion-item {
+        border: none;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .accordion-body {
+        background-color: #f8f9fc;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section {
+        background: #f8f9fc;
+        border-radius: 12px;
+        padding: 24px;
+    }
+
+    .accordion-header {
+        padding: 0;
     }
 </style>
 @endsection
@@ -106,189 +149,187 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="m-0">Event Pass</h1>
-                <button class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Generate Pass
+                <h1 class="m-0 text-primary fw-bold display-4" style="letter-spacing: 1.5px; text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                    Event Pass
+                </h1>
+                <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
+                    <i class="fas fa-plus me-2"></i> Generate Pass
                 </button>
             </div>
         </div>
+        
     </div>
 
     <div class="accordion" id="accordionExample">
         <div class="accordion-iteam">
-            <h2 class="accordion-header">
+            <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button rounded-3 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Create Event Pass
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <div class="event-pass-container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-9">
-                                <div class="card shadow-sm border-light">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4 text-center">Pass Details</h5>
-                    
-                                        <!-- Upload Image & Organization Name -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="imageUpload" class="form-label">Upload Logo</label>
-                                                <input type="file" class="form-control" id="imageUpload">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="organizationName" class="form-label">Organization Name</label>
-                                                <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
-                                            </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+                            <div class="card shadow-sm border-light">
+                                <div class="card-body">
+                                    <!-- Upload Image & Organization Name -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="imageUpload" class="form-label">Upload Logo</label>
+                                            <input type="file" class="form-control" id="imageUpload">
                                         </div>
-                    
-                                        <!-- Event Name & Venue -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventName" class="form-label">Event Name</label>
-                                                <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventVenue" class="form-label">Venue</label>
-                                                <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="organizationName" class="form-label">Organization Name</label>
+                                            <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
                                         </div>
-                    
-                                        <!-- Event Date & Time -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventDate" class="form-label">Event Date</label>
-                                                <input type="date" class="form-control" id="eventDate">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventTime" class="form-label">Event Time</label>
-                                                <input type="time" class="form-control" id="eventTime">
-                                            </div>
+                                    </div>
+                
+                                    <!-- Event Name & Venue -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventName" class="form-label">Event Name</label>
+                                            <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
                                         </div>
-                    
-                                        <!-- Gate, Section, Seat/Row -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="gate" class="form-label">Gate</label>
-                                                <input type="text" class="form-control" id="gate" placeholder="Gate number">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="section" class="form-label">Section</label>
-                                                <input type="text" class="form-control" id="section" placeholder="Section">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="seatRow" class="form-label">Seat/Row</label>
-                                                <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="eventVenue" class="form-label">Venue</label>
+                                            <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
                                         </div>
-                    
-                                        <!-- Barcode Picker, Color Picker, Hex Code -->
-                                        <div class="row mb-2">
-                                            <div class="col-md-4">
-                                                <label for="barcode" class="form-label">Barcode</label>
-                                                <input type="file" class="form-control" id="barcode">
+                                    </div>
+                
+                                    <!-- Event Date & Time -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventDate" class="form-label">Event Date</label>
+                                            <input type="date" class="form-control" id="eventDate">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="eventTime" class="form-label">Event Time</label>
+                                            <input type="time" class="form-control" id="eventTime">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Gate, Section, Seat/Row -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="gate" class="form-label">Gate</label>
+                                            <input type="text" class="form-control" id="gate" placeholder="Gate number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="section" class="form-label">Section</label>
+                                            <input type="text" class="form-control" id="section" placeholder="Section">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="seatRow" class="form-label">Seat/Row</label>
+                                            <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Barcode Picker, Color Picker, Hex Code -->
+                                    <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="barcode" class="form-label">Barcode</label>
+                                            <input type="file" class="form-control" id="barcode">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colorPicker" class="form-label">Color Picker</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
+                                                <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
+                                                    <i class="fas fa-paint-brush"></i>
+                                                </button>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="colorPicker" class="form-label">Color Picker</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
-                                                    <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
-                                                        <i class="fas fa-paint-brush"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- Color Picker Modal -->
-                                                <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <input type="color" class="form-control" id="colorPicker">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
-                                                            </div>
+                                            <!-- Color Picker Modal -->
+                                            <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="color" class="form-control" id="colorPicker">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="hexCode" class="form-label">Hex Code</label>
-                                                <input type="text" class="form-control" id="hexCode" placeholder="#000000">
-                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="barcode" class="form-label">Upload Hero image</label>
-                                                <input type="file" class="form-control" id="heroImageUpload">
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="hexCode" class="form-label">Hex Code</label>
+                                            <input type="text" class="form-control" id="hexCode" placeholder="#000000">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="barcode" class="form-label">Upload Hero image</label>
+                                            <input type="file" class="form-control" id="heroImageUpload">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                
-                            <!-- Right Column - Preview Card -->
-                            <div class="col-md-3">
-                                <div class="preview-card" id="previewCard">
-                                    <!-- First Line: Logo and Organizer Name -->
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
-                                        <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
+                        </div>
+            
+                        <!-- Right Column - Preview Card -->
+                        <div class="col-md-3">
+                            <div class="preview-card" id="previewCard">
+                                <!-- First Line: Logo and Organizer Name -->
+                                <div class="d-flex align-items-center mb-3">
+                                    <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
+                                    <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
+                                </div>
+                                
+                                <!-- Horizontal Line -->
+                                <hr>
+                        
+                                <!-- Second Line: Venue -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
+                                </div>
+                        
+                                <!-- Third Line: Event Name -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
+                                </div>
+                        
+                                <!-- Fourth Line: Date and Time -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
                                     </div>
-                                    
-                                    <!-- Horizontal Line -->
-                                    <hr>
-                            
-                                    <!-- Second Line: Venue -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
-                                    </div>
-                            
-                                    <!-- Third Line: Event Name -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
-                                    </div>
-                            
-                                    <!-- Fourth Line: Date and Time -->
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Fifth Line: Gate, Section, Row -->
-                                    <div class="row mb-3" id="seatDetailsRow" style="display: none;">
-                                        <div class="col-md-4">
-                                            <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Barcode (if provided) -->
-                                    <div class="mb-3" id="barcodePreview" style="display: none;">
-                                        <h6><strong>Barcode:</strong></h6>
-                                        <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
-                                    </div>
-                            
-                                    <!-- Hero Image -->
-                                    <div class="mb-3">
-                                        <h6><strong>Hero Image:</strong></h6>
-                                        <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
+                                    <div class="col-md-6">
+                                        <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
                                     </div>
                                 </div>
+                        
+                                <!-- Fifth Line: Gate, Section, Row -->
+                                <div class="row mb-3" id="seatDetailsRow" style="display: none;">
+                                    <div class="col-md-4">
+                                        <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
+                                    </div>
+                                </div>
+                        
+                                <!-- Barcode (if provided) -->
+                                <div class="mb-3" id="barcodePreview" style="display: none;">
+                                    <h6><strong>Barcode:</strong></h6>
+                                    <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
+                                </div>
+                        
+                                <!-- Hero Image -->
+                                <div class="mb-3">
+                                    <h6><strong>Hero Image:</strong></h6>
+                                    <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
+                                </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -297,178 +338,185 @@
         <div class="accordion-item mt-3">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed rounded-3 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Accordion Item #2
+                <div class="d-flex">
+                    <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name: 5G New Generation</span>
+                    <span class="me-4" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Location">Event Location: Royal Global University</span>
+                </div>
+                
+                <!-- Right side content (Start Date, End Date, Status) -->
+                <div class="d-flex">
+                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Start Date">Start Date: 12Fab 2024</span>
+                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event End Date">End Date: 16 Fab 2024</span>
+                    <span class="badge bg-success text-light">Active</span>
+                </div>
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <div class="event-pass-container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-9">
-                                <div class="card shadow-sm border-light">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4 text-center">Pass Details</h5>
-                    
-                                        <!-- Upload Image & Organization Name -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="imageUpload" class="form-label">Upload Logo</label>
-                                                <input type="file" class="form-control" id="imageUpload">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="organizationName" class="form-label">Organization Name</label>
-                                                <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
-                                            </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+                            <div class="card shadow-sm border-light">
+                                <div class="card-body">
+
+                                    <!-- Upload Image & Organization Name -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="imageUpload" class="form-label">Upload Logo</label>
+                                            <input type="file" class="form-control" id="imageUpload">
                                         </div>
-                    
-                                        <!-- Event Name & Venue -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventName" class="form-label">Event Name</label>
-                                                <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventVenue" class="form-label">Venue</label>
-                                                <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="organizationName" class="form-label">Organization Name</label>
+                                            <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
                                         </div>
-                    
-                                        <!-- Event Date & Time -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventDate" class="form-label">Event Date</label>
-                                                <input type="date" class="form-control" id="eventDate">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventTime" class="form-label">Event Time</label>
-                                                <input type="time" class="form-control" id="eventTime">
-                                            </div>
+                                    </div>
+                
+                                    <!-- Event Name & Venue -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventName" class="form-label">Event Name</label>
+                                            <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
                                         </div>
-                    
-                                        <!-- Gate, Section, Seat/Row -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="gate" class="form-label">Gate</label>
-                                                <input type="text" class="form-control" id="gate" placeholder="Gate number">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="section" class="form-label">Section</label>
-                                                <input type="text" class="form-control" id="section" placeholder="Section">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="seatRow" class="form-label">Seat/Row</label>
-                                                <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="eventVenue" class="form-label">Venue</label>
+                                            <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
                                         </div>
-                    
-                                        <!-- Barcode Picker, Color Picker, Hex Code -->
-                                        <div class="row mb-2">
-                                            <div class="col-md-4">
-                                                <label for="barcode" class="form-label">Barcode</label>
-                                                <input type="file" class="form-control" id="barcode">
+                                    </div>
+                
+                                    <!-- Event Date & Time -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventDate" class="form-label">Event Date</label>
+                                            <input type="date" class="form-control" id="eventDate">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="eventTime" class="form-label">Event Time</label>
+                                            <input type="time" class="form-control" id="eventTime">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Gate, Section, Seat/Row -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="gate" class="form-label">Gate</label>
+                                            <input type="text" class="form-control" id="gate" placeholder="Gate number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="section" class="form-label">Section</label>
+                                            <input type="text" class="form-control" id="section" placeholder="Section">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="seatRow" class="form-label">Seat/Row</label>
+                                            <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Barcode Picker, Color Picker, Hex Code -->
+                                    <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="barcode" class="form-label">Barcode</label>
+                                            <input type="file" class="form-control" id="barcode">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colorPicker" class="form-label">Color Picker</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
+                                                <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
+                                                    <i class="fas fa-paint-brush"></i>
+                                                </button>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="colorPicker" class="form-label">Color Picker</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
-                                                    <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
-                                                        <i class="fas fa-paint-brush"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- Color Picker Modal -->
-                                                <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <input type="color" class="form-control" id="colorPicker">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
-                                                            </div>
+                                            <!-- Color Picker Modal -->
+                                            <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="color" class="form-control" id="colorPicker">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="hexCode" class="form-label">Hex Code</label>
-                                                <input type="text" class="form-control" id="hexCode" placeholder="#000000">
-                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="barcode" class="form-label">Upload Hero image</label>
-                                                <input type="file" class="form-control" id="heroImageUpload">
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="hexCode" class="form-label">Hex Code</label>
+                                            <input type="text" class="form-control" id="hexCode" placeholder="#000000">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="barcode" class="form-label">Upload Hero image</label>
+                                            <input type="file" class="form-control" id="heroImageUpload">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                
-                            <!-- Right Column - Preview Card -->
-                            <div class="col-md-3">
-                                <div class="preview-card" id="previewCard">
-                                    <!-- First Line: Logo and Organizer Name -->
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
-                                        <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
-                                    </div>
-                                    
-                                    <!-- Horizontal Line -->
-                                    <hr>
-                            
-                                    <!-- Second Line: Venue -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
-                                    </div>
-                            
-                                    <!-- Third Line: Event Name -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
-                                    </div>
-                            
-                                    <!-- Fourth Line: Date and Time -->
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Fifth Line: Gate, Section, Row -->
-                                    <div class="row mb-3" id="seatDetailsRow" style="display: none;">
-                                        <div class="col-md-4">
-                                            <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Barcode (if provided) -->
-                                    <div class="mb-3" id="barcodePreview" style="display: none;">
-                                        <h6><strong>Barcode:</strong></h6>
-                                        <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
-                                    </div>
-                            
-                                    <!-- Hero Image -->
-                                    <div class="mb-3">
-                                        <h6><strong>Hero Image:</strong></h6>
-                                        <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
-                                    </div>
-                                </div>
-                            </div>
-                            
                         </div>
+            
+                        <!-- Right Column - Preview Card -->
+                        <div class="col-md-3">
+                            <div class="preview-card" id="previewCard">
+                                <!-- First Line: Logo and Organizer Name -->
+                                <div class="d-flex align-items-center mb-3">
+                                    <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
+                                    <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
+                                </div>
+                                
+                                <!-- Horizontal Line -->
+                                <hr>
+                        
+                                <!-- Second Line: Venue -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
+                                </div>
+                        
+                                <!-- Third Line: Event Name -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
+                                </div>
+                        
+                                <!-- Fourth Line: Date and Time -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
+                                    </div>
+                                </div>
+                        
+                                <!-- Fifth Line: Gate, Section, Row -->
+                                <div class="row mb-3" id="seatDetailsRow" style="display: none;">
+                                    <div class="col-md-4">
+                                        <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
+                                    </div>
+                                </div>
+                        
+                                <!-- Barcode (if provided) -->
+                                <div class="mb-3" id="barcodePreview" style="display: none;">
+                                    <h6><strong>Barcode:</strong></h6>
+                                    <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
+                                </div>
+                        
+                                <!-- Hero Image -->
+                                <div class="mb-3">
+                                    <h6><strong>Hero Image:</strong></h6>
+                                    <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -476,177 +524,182 @@
         <div class="accordion-item mt-3">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Accordion Item #3
+                <div class="d-flex">
+                    <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name: Toyota Material Handling</span>
+                    <span class="me-4" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Location">Event Location: Lokhra Gueahati</span>
+                </div>
+                
+                <!-- Right side content (Start Date, End Date, Status) -->
+                <div class="d-flex">
+                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Start Date">Start Date: 12Fab 2024</span>
+                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event End Date">End Date: 16 Fab 2024</span>
+                    <span class="badge bg-success text-light">Active</span>
+                </div>
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <div class="event-pass-container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-9">
-                                <div class="card shadow-sm border-light">
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-4 text-center">Pass Details</h5>
-                    
-                                        <!-- Upload Image & Organization Name -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="imageUpload" class="form-label">Upload Logo</label>
-                                                <input type="file" class="form-control" id="imageUpload">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="organizationName" class="form-label">Organization Name</label>
-                                                <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
-                                            </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-9">
+                            <div class="card shadow-sm border-light">
+                                <div class="card-body">
+                                    <!-- Upload Image & Organization Name -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="imageUpload" class="form-label">Upload Logo</label>
+                                            <input type="file" class="form-control" id="imageUpload">
                                         </div>
-                    
-                                        <!-- Event Name & Venue -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventName" class="form-label">Event Name</label>
-                                                <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventVenue" class="form-label">Venue</label>
-                                                <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="organizationName" class="form-label">Organization Name</label>
+                                            <input type="text" class="form-control" id="organizationName" placeholder="Enter organization name">
                                         </div>
-                    
-                                        <!-- Event Date & Time -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label for="eventDate" class="form-label">Event Date</label>
-                                                <input type="date" class="form-control" id="eventDate">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="eventTime" class="form-label">Event Time</label>
-                                                <input type="time" class="form-control" id="eventTime">
-                                            </div>
+                                    </div>
+                
+                                    <!-- Event Name & Venue -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventName" class="form-label">Event Name</label>
+                                            <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
                                         </div>
-                    
-                                        <!-- Gate, Section, Seat/Row -->
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <label for="gate" class="form-label">Gate</label>
-                                                <input type="text" class="form-control" id="gate" placeholder="Gate number">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="section" class="form-label">Section</label>
-                                                <input type="text" class="form-control" id="section" placeholder="Section">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="seatRow" class="form-label">Seat/Row</label>
-                                                <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
-                                            </div>
+                                        <div class="col-md-6">
+                                            <label for="eventVenue" class="form-label">Venue</label>
+                                            <input type="text" class="form-control" id="eventVenue" placeholder="Enter venue">
                                         </div>
-                    
-                                        <!-- Barcode Picker, Color Picker, Hex Code -->
-                                        <div class="row mb-2">
-                                            <div class="col-md-4">
-                                                <label for="barcode" class="form-label">Barcode</label>
-                                                <input type="file" class="form-control" id="barcode">
+                                    </div>
+                
+                                    <!-- Event Date & Time -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="eventDate" class="form-label">Event Date</label>
+                                            <input type="date" class="form-control" id="eventDate">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="eventTime" class="form-label">Event Time</label>
+                                            <input type="time" class="form-control" id="eventTime">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Gate, Section, Seat/Row -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="gate" class="form-label">Gate</label>
+                                            <input type="text" class="form-control" id="gate" placeholder="Gate number">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="section" class="form-label">Section</label>
+                                            <input type="text" class="form-control" id="section" placeholder="Section">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="seatRow" class="form-label">Seat/Row</label>
+                                            <input type="text" class="form-control" id="seatRow" placeholder="Seat or Row">
+                                        </div>
+                                    </div>
+                
+                                    <!-- Barcode Picker, Color Picker, Hex Code -->
+                                    <div class="row mb-2">
+                                        <div class="col-md-4">
+                                            <label for="barcode" class="form-label">Barcode</label>
+                                            <input type="file" class="form-control" id="barcode">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="colorPicker" class="form-label">Color Picker</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
+                                                <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
+                                                    <i class="fas fa-paint-brush"></i>
+                                                </button>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="colorPicker" class="form-label">Color Picker</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="colorPickerInput" placeholder="Choose Color" readonly>
-                                                    <button class="btn btn-outline-secondary" type="button" id="colorPickerButton">
-                                                        <i class="fas fa-paint-brush"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- Color Picker Modal -->
-                                                <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <input type="color" class="form-control" id="colorPicker">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
-                                                            </div>
+                                            <!-- Color Picker Modal -->
+                                            <div class="modal fade" id="colorPickerModal" tabindex="-1" aria-labelledby="colorPickerModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="colorPickerModalLabel">Select a Color</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <input type="color" class="form-control" id="colorPicker">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" id="saveColorButton">Save Color</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="hexCode" class="form-label">Hex Code</label>
-                                                <input type="text" class="form-control" id="hexCode" placeholder="#000000">
-                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="barcode" class="form-label">Upload Hero image</label>
-                                                <input type="file" class="form-control" id="heroImageUpload">
-                                            </div>
+                                        <div class="col-md-4">
+                                            <label for="hexCode" class="form-label">Hex Code</label>
+                                            <input type="text" class="form-control" id="hexCode" placeholder="#000000">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="barcode" class="form-label">Upload Hero image</label>
+                                            <input type="file" class="form-control" id="heroImageUpload">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                
-                            <!-- Right Column - Preview Card -->
-                            <div class="col-md-3">
-                                <div class="preview-card" id="previewCard">
-                                    <!-- First Line: Logo and Organizer Name -->
-                                    <div class="d-flex align-items-center mb-3">
-                                        <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
-                                        <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
+                        </div>
+            
+                        <!-- Right Column - Preview Card -->
+                        <div class="col-md-3">
+                            <div class="preview-card" id="previewCard">
+                                <!-- First Line: Logo and Organizer Name -->
+                                <div class="d-flex align-items-center mb-3">
+                                    <img id="previewLogo" src="" alt="Logo" class="rounded-circle" width="50" height="50">
+                                    <h5 id="previewOrganizerName" class="ms-3 mb-0">Organizer Name</h5>
+                                </div>
+                                
+                                <!-- Horizontal Line -->
+                                <hr>
+                        
+                                <!-- Second Line: Venue -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
+                                </div>
+                        
+                                <!-- Third Line: Event Name -->
+                                <div class="mb-3">
+                                    <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
+                                </div>
+                        
+                                <!-- Fourth Line: Date and Time -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
                                     </div>
-                                    
-                                    <!-- Horizontal Line -->
-                                    <hr>
-                            
-                                    <!-- Second Line: Venue -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
-                                    </div>
-                            
-                                    <!-- Third Line: Event Name -->
-                                    <div class="mb-3">
-                                        <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
-                                    </div>
-                            
-                                    <!-- Fourth Line: Date and Time -->
-                                    <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Fifth Line: Gate, Section, Row -->
-                                    <div class="row mb-3" id="seatDetailsRow" style="display: none;">
-                                        <div class="col-md-4">
-                                            <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
-                                        </div>
-                                    </div>
-                            
-                                    <!-- Barcode (if provided) -->
-                                    <div class="mb-3" id="barcodePreview" style="display: none;">
-                                        <h6><strong>Barcode:</strong></h6>
-                                        <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
-                                    </div>
-                            
-                                    <!-- Hero Image -->
-                                    <div class="mb-3">
-                                        <h6><strong>Hero Image:</strong></h6>
-                                        <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
+                                    <div class="col-md-6">
+                                        <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
                                     </div>
                                 </div>
+                        
+                                <!-- Fifth Line: Gate, Section, Row -->
+                                <div class="row mb-3" id="seatDetailsRow" style="display: none;">
+                                    <div class="col-md-4">
+                                        <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
+                                    </div>
+                                </div>
+                        
+                                <!-- Barcode (if provided) -->
+                                <div class="mb-3" id="barcodePreview" style="display: none;">
+                                    <h6><strong>Barcode:</strong></h6>
+                                    <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
+                                </div>
+                        
+                                <!-- Hero Image -->
+                                <div class="mb-3">
+                                    <h6><strong>Hero Image:</strong></h6>
+                                    <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
+                                </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
