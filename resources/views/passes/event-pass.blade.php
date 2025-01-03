@@ -112,7 +112,7 @@
 
     <div class="event-pass-container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card shadow-sm border-light">
                     <div class="card-body">
                         <h5 class="card-title mb-4 text-center">Pass Details</h5>
@@ -218,7 +218,7 @@
             </div>
 
             <!-- Right Column - Preview Card -->
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="preview-card" id="previewCard">
                     <!-- First Line: Logo and Organizer Name -->
                     <div class="d-flex align-items-center mb-3">
@@ -292,7 +292,6 @@
         const modal = new bootstrap.Modal(document.getElementById('colorPickerModal'));
         modal.show();
     });
-
     // Function to update preview card
     function updatePreviewCard() {
         // Logo and Organizer
@@ -352,7 +351,6 @@
             heroImagePreview.src = heroImageURL;
         }
     }
-
     // Color Change for Card
     document.getElementById('saveColorButton').addEventListener('click', function() {
         const colorPicker = document.getElementById('colorPicker');
@@ -368,8 +366,6 @@
         // Set the hex value to the input field
         document.getElementById('hexCode').value = selectedColor;
     });
-
-
     // Call this function on input change
     document.querySelectorAll('#imageUpload, #organizationName, #eventVenue, #eventName, #eventDate, #eventTime, #gate, #section, #seatRow, #barcode, #heroImageUpload').forEach((element) => {
         element.addEventListener('input', updatePreviewCard);
