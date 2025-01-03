@@ -209,7 +209,7 @@
                         <div class="row">
                             <div class="col">
                                 <label for="barcode" class="form-label">Upload Hero image</label>
-                                <input type="file" class="form-control" id="barcode">
+                                <input type="file" class="form-control" id="heroImageUpload">
                             </div>
                         </div>
                     </div>
@@ -286,10 +286,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 <script>
+    // Set up the color picker modal button event listener
     document.getElementById('colorPickerButton').addEventListener('click', function() {
         const modal = new bootstrap.Modal(document.getElementById('colorPickerModal'));
         modal.show();
     });
+
+    // Function to update preview card
     function updatePreviewCard() {
         // Logo and Organizer
         const logoInput = document.getElementById('imageUpload');
@@ -353,12 +356,25 @@
     document.getElementById('saveColorButton').addEventListener('click', function() {
         const colorPicker = document.getElementById('colorPicker');
         const selectedColor = colorPicker.value;
-        document.getElementById('previewCard').style.backgroundColor = selectedColor;
+
+        // Check if the color is valid
+        if (selectedColor) {
+            // Change the preview card's background color
+            document.getElementById('previewCard').style.backgroundColor = selectedColor;
+
+            // Close the modal after saving the color
+            const modal = bootstrap.Modal.getInstance(document.getElementById('colorPickerModal'));
+            modal.hide();
+
+            // Set the hex value to the input field
+            document.getElementById('hexCode').value = selectedColor;
+        }
     });
 
     // Call this function on input change
     document.querySelectorAll('#imageUpload, #organizationName, #eventVenue, #eventName, #eventDate, #eventTime, #gate, #section, #seatRow, #barcode, #heroImageUpload').forEach((element) => {
         element.addEventListener('input', updatePreviewCard);
     });
+
 </script>
 @endsection
