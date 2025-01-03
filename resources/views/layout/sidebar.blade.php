@@ -25,27 +25,8 @@
             <span class="badge">6</span>
         </a>
 
-        <!-- Products Menu -->
-        <div class="menu-item">
-            <a href="#" class="nav-link" data-toggle="submenu" data-target="products-menu">
-                <div>
-                    <i class="fas fa-box"></i>
-                    Products
-                </div>
-                <i class="fas fa-chevron-down menu-toggle"></i>
-            </a>
-            <div class="submenu" id="products-menu">
-                <a href="#" class="nav-link">Fashion</a>
-                <a href="#" class="nav-link">Home Decor</a>
-                <a href="#" class="nav-link">Skincare</a>
-                <a href="#" class="nav-link">Snacks</a>
-            </div>
-        </div>
-        
-        
-
-        <!-- Pass Menu -->
-        <div class="menu-item">
+         <!-- Pass Menu -->
+         <div class="menu-item">
             <a href="#" 
             class="nav-link {{ request()->routeIs('passes.*') ? 'active' : '' }}"
             data-toggle="submenu" 
@@ -62,6 +43,23 @@
                 <a href="#" class="nav-link">Generic Pass</a>
                 <a href="#" class="nav-link">Travel Pass</a>
                 <a href="#" class="nav-link">Digital Pass</a>
+            </div>
+        </div>
+
+        <!-- API Menu -->
+        <div class="menu-item">
+            <a href="#" class="nav-link" data-toggle="submenu" data-target="products-menu">
+                <div>
+                    <i class="fas fa-box"></i>
+                    API
+                </div>
+                <i class="fas fa-chevron-down menu-toggle"></i>
+            </a>
+            <div class="submenu" id="products-menu">
+                <a href="#" class="nav-link">Event API</a>
+                <a href="#" class="nav-link">Generic API</a>
+                <a href="#" class="nav-link">Travel API</a>
+                <a href="#" class="nav-link">Digital API</a>
             </div>
         </div>
 

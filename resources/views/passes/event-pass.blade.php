@@ -141,6 +141,22 @@
     .accordion-header {
         padding: 0;
     }
+    .search-input-group {
+        width: 500px;
+        margin-top: 2px
+    }
+
+    .search-input-group .form-control {
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+        outline: 1px solid #7749F8
+    }
+
+    .search-input-group .input-group-text {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        outline: 1px solid #7749F8; /
+    }
 </style>
 @endsection
 
@@ -149,16 +165,26 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="m-0 text-primary fw-bold display-4" style="letter-spacing: 1.5px; text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                <!-- Event Pass Title -->
+                <h2 class="m-0 fw-bold" style="letter-spacing: 1.5px; text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); color: #7749F8; font-size: 28px;">
                     Event Pass
-                </h1>
-                <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
-                    <i class="fas fa-plus me-2"></i> Generate Pass
-                </button>
+                </h2>
+    
+                <!-- Search Input -->
+                {{-- <div class="d-flex align-items-center" style="max-width: 500px; width: 100%;">
+                    <div class="input-group flex-nowrap">
+                        <input type="text" class="form-control rounded-pill shadow-sm border-light" placeholder="Search..." aria-label="Search" aria-describedby="search-addon" style="height: 45px;">
+                        <span class="input-group-text bg-light border-light shadow-sm rounded-pill" id="search-addon" style="cursor: pointer; padding: 0 20px; height: 45px;">
+                            <i class="fas fa-search" style="color: #7749F8;"></i>
+                        </span>
+                    </div>
+                </div> --}}
             </div>
         </div>
-        
     </div>
+    
+    
+    
 
     <div class="accordion" id="accordionExample">
         <div class="accordion-iteam">
@@ -170,7 +196,7 @@
             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row justify-content-center">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="card shadow-sm border-light">
                                 <div class="card-body">
                                     <!-- Upload Image & Organization Name -->
@@ -272,9 +298,8 @@
                                 </div>
                             </div>
                         </div>
-            
                         <!-- Right Column - Preview Card -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="preview-card" id="previewCard">
                                 <!-- First Line: Logo and Organizer Name -->
                                 <div class="d-flex align-items-center mb-3">
@@ -286,42 +311,47 @@
                                 <hr>
                         
                                 <!-- Second Line: Venue -->
-                                <div class="mb-3">
+                                <div class="mb-2">
                                     <h6><strong></strong> <span id="previewVenue">Convention Center</span></h6>
                                 </div>
                         
                                 <!-- Third Line: Event Name -->
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <h6><strong></strong> <span id="previewEventName">Tech Conference 2024</span></h6>
                                 </div>
                         
                                 <!-- Fourth Line: Date and Time -->
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <h6><strong>Date:</strong> <span id="previewDate">January 15, 2024</span></h6>
+                                    <div class="col-4">
+                                        <h6><strong>Date</strong></h6>
+                                        <span id="previewDate">January 15, 2024</span>
                                     </div>
-                                    <div class="col-md-6">
-                                        <h6><strong>Time:</strong> <span id="previewTime">10:00 AM</span></h6>
+                                    <div class="col-4 offset-md-4">
+                                        <h6><strong>Time</strong></h6>
+                                        <span id="previewTime">10:00 AM</span>
                                     </div>
                                 </div>
                         
                                 <!-- Fifth Line: Gate, Section, Row -->
                                 <div class="row mb-3" id="seatDetailsRow" style="display: none;">
                                     <div class="col-md-4">
-                                        <h6><strong>Gate:</strong> <span id="previewGate">1</span></h6>
+                                        <h6><strong>Gate</strong></h6>
+                                        <span id="previewGate">1</span>
                                     </div>
                                     <div class="col-md-4">
-                                        <h6><strong>Section:</strong> <span id="previewSection">A</span></h6>
+                                        <h6><strong>Section</strong></h6>
+                                        <span id="previewSection">A</span>
                                     </div>
                                     <div class="col-md-4">
-                                        <h6><strong>Seat/Row:</strong> <span id="previewSeatRow">5</span></h6>
+                                        <h6><strong>Seat/Row</strong></h6>
+                                        <span id="previewSeatRow">5</span>
                                     </div>
                                 </div>
                         
                                 <!-- Barcode (if provided) -->
                                 <div class="mb-3" id="barcodePreview" style="display: none;">
                                     <h6><strong>Barcode:</strong></h6>
-                                    <img id="barcodeImage" src="" alt="Barcode" class="img-fluid">
+                                    <img id="barcodeImage" src="" alt="Barcode" class="w-50 img-fluid">
                                 </div>
                         
                                 <!-- Hero Image -->
@@ -329,35 +359,51 @@
                                     <h6><strong>Hero Image:</strong></h6>
                                     <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
+                                    <i class="fas fa-plus me-2"></i> Save Pass
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <div class="accordion-item mt-3">
             <h2 class="accordion-header">
-              <button class="accordion-button collapsed rounded-3 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <div class="d-flex">
-                    <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name: 5G New Generation</span>
-                    <span class="me-4" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Location">Event Location: Royal Global University</span>
-                </div>
-                
-                <!-- Right side content (Start Date, End Date, Status) -->
-                <div class="d-flex">
-                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Start Date">Start Date: 12Fab 2024</span>
-                    <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event End Date">End Date: 16 Fab 2024</span>
-                    <span class="badge bg-success text-light">Active</span>
-                </div>
-              </button>
-            </h2>
+                <button class="accordion-button collapsed rounded-3 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <div class="d-flex w-100 justify-content-between align-items-center">
+                    
+                    <!-- Left side content (Event Name, Event Location) -->
+                    <div class="d-flex">
+                      <span class="me-4" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Name">Event Name: 5G New Generation</span>
+                      <span class="me-4" style="max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Location">Event Location: Royal Global University</span>
+                    </div>
+                    
+                    <!-- Right side content (Start Date, End Date, Status, and Button) -->
+                    <div class="d-flex align-items-center">
+                      <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event Start Date">Start Date: 12Feb 2024</span>
+                      <span class="me-3" style="max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="Event End Date">End Date: 16Feb 2024</span>
+                      
+                      <!-- Button to redirect user -->
+                    </div>
+                    
+                  </div>
+                </button>
+              </h2>
+              
+              
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row justify-content-center">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="card shadow-sm border-light">
                                 <div class="card-body">
-
                                     <!-- Upload Image & Organization Name -->
                                     <div class="row mb-3">
                                         <div class="col-md-6">
@@ -459,7 +505,7 @@
                         </div>
             
                         <!-- Right Column - Preview Card -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="preview-card" id="previewCard">
                                 <!-- First Line: Logo and Organizer Name -->
                                 <div class="d-flex align-items-center mb-3">
@@ -516,7 +562,16 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
+                                    <i class="fas fa-plus me-2"></i> Update Pass
+                                </button>
+                                <button class="btn btn-outline-primary rounded-pill px-4 py-2 ml-3" style="font-weight: 600;">
+                                    <i class="fas fa-eye me-2"></i> Preview Pass
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -540,7 +595,7 @@
             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="row justify-content-center">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="card shadow-sm border-light">
                                 <div class="card-body">
                                     <!-- Upload Image & Organization Name -->
@@ -642,9 +697,8 @@
                                 </div>
                             </div>
                         </div>
-            
                         <!-- Right Column - Preview Card -->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="preview-card" id="previewCard">
                                 <!-- First Line: Logo and Organizer Name -->
                                 <div class="d-flex align-items-center mb-3">
@@ -699,6 +753,16 @@
                                     <h6><strong>Hero Image:</strong></h6>
                                     <img id="heroImagePreview" src="" alt="Hero Image" class="img-fluid">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col text-center">
+                                <button class="btn btn-outline-primary rounded-pill px-4 py-2" style="font-weight: 600;">
+                                    <i class="fas fa-plus me-2"></i> Update Pass
+                                </button>
+                                <button class="btn btn-outline-primary rounded-pill px-4 py-2 ml-3" style="font-weight: 600;">
+                                    <i class="fas fa-eye me-2"></i> Preview Pass
+                                </button>
                             </div>
                         </div>
                     </div>
